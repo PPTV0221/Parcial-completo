@@ -1,0 +1,112 @@
+/* ============ PawCare – estilos ============ */
+:root {
+  --pc-primary: #0f8b8d;
+  --pc-primary-dark: #0a6b6d;
+  --pc-accent: #ff8a5b;
+  --pc-bg: #f2f7f7;
+  --pc-text: #26343a;
+  --pc-radius: 14px;
+}
+
+body {
+  background: var(--pc-bg);
+  color: var(--pc-text);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar y cabecera */
+.pc-navbar {
+  background: var(--pc-primary-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+.pc-brand-icon { color: var(--pc-accent); font-size: 1.4rem; }
+
+.pc-hero {
+  background: linear-gradient(135deg, var(--pc-primary) 0%, var(--pc-primary-dark) 100%);
+  color: #fff;
+  padding: 2rem 0 4rem;
+}
+
+/* Contenido: sube sobre el hero */
+.pc-main {
+  margin-top: -2.5rem;
+  flex: 1;
+}
+
+/* Tarjetas */
+.pc-card {
+  border: 0;
+  border-radius: var(--pc-radius);
+  box-shadow: 0 6px 20px rgba(15, 80, 85, .10);
+  overflow: hidden;
+}
+.pc-card-header {
+  background: #fff;
+  border-bottom: 3px solid var(--pc-primary);
+  font-weight: 600;
+  color: var(--pc-primary-dark);
+  padding: .9rem 1.25rem;
+}
+.pc-card .card-body { padding: 1.25rem; }
+
+/* Formulario */
+.form-label { font-weight: 500; font-size: .9rem; margin-bottom: .25rem; }
+.form-control, .form-select { border-radius: 10px; padding: .55rem .8rem; }
+.form-control:focus, .form-select:focus {
+  border-color: var(--pc-primary);
+  box-shadow: 0 0 0 .2rem rgba(15, 139, 141, .2);
+}
+.invalid-feedback { font-size: .82rem; }
+
+/* Botones */
+.pc-btn {
+  background: var(--pc-primary);
+  border-color: var(--pc-primary);
+  border-radius: 10px;
+  padding: .6rem;
+  font-weight: 600;
+}
+.pc-btn:hover, .pc-btn:focus {
+  background: var(--pc-primary-dark);
+  border-color: var(--pc-primary-dark);
+}
+.btn-outline-secondary { border-radius: 10px; }
+
+/* Buscador */
+.pc-search { max-width: 260px; width: 100%; }
+
+/* Tabla */
+#gvMascotas thead th {
+  background: #e6f2f2;
+  color: var(--pc-primary-dark);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  border-bottom: 0;
+}
+#gvMascotas td { font-size: .92rem; }
+#gvMascotas .col-obs {
+  max-width: 220px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Etiquetas de tipo */
+.tipo-badge { font-weight: 600; padding: .35em .7em; border-radius: 20px; }
+.tipo-Perro { background: #fff0e6; color: #c25a1a; }
+.tipo-Gato  { background: #ece9ff; color: #5440c4; }
+.tipo-Otro  { background: #e3f5ec; color: #1f8554; }
+
+/* Animación de nueva fila */
+@keyframes pc-flash { from { background: #d4f3e3; } to { background: transparent; } }
+.fila-nueva > td { animation: pc-flash 1.6s ease-out; }
+
+/* Móvil: más compacto */
+@media (max-width: 575.98px) {
+  .pc-hero { padding: 1.5rem 0 3.5rem; }
+  .pc-search { max-width: 100%; }
+}

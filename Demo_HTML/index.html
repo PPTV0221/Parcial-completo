@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PawCare – Registro de mascotas</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <nav class="navbar navbar-dark pc-navbar">
+    <div class="container">
+      <span class="navbar-brand d-flex align-items-center gap-2 mb-0">
+        <i class="bi bi-heart-fill pc-brand-icon"></i>
+        <span class="fw-bold">PawCare</span>
+      </span>
+      <span class="text-white-50 small d-none d-sm-inline">Clínica veterinaria · Registro de mascotas</span>
+    </div>
+  </nav>
+
+  <!-- Encabezado -->
+  <header class="pc-hero">
+    <div class="container">
+      <h1 class="h3 mb-1">Registro de mascotas</h1>
+      <p class="mb-0 opacity-75">Registra nuevas mascotas y consulta las que ya están en el sistema.</p>
+    </div>
+  </header>
+
+  <main class="container pc-main">
+    <div class="row g-4">
+
+      <!-- ===== FORMULARIO (en móvil va arriba, ocupa todo el ancho) ===== -->
+      <div class="col-12 col-lg-4">
+        <div class="card pc-card">
+          <div class="card-header pc-card-header">
+            <i class="bi bi-plus-circle me-2"></i>Nueva mascota
+          </div>
+          <div class="card-body">
+
+            <div id="mensaje" class="alert d-none" role="alert"></div>
+
+            <form id="formMascota" novalidate>
+
+              <div class="mb-3">
+                <label for="txtNombreMascota" class="form-label">Nombre de la mascota <span class="text-danger">*</span></label>
+                <input type="text" id="txtNombreMascota" class="form-control" maxlength="80" placeholder="Ej: Firulais" autocomplete="off">
+                <div class="invalid-feedback" id="errNombreMascota"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="txtNombreDueno" class="form-label">Nombre del dueño <span class="text-danger">*</span></label>
+                <input type="text" id="txtNombreDueno" class="form-control" maxlength="100" placeholder="Ej: Juan Pérez" autocomplete="off">
+                <div class="invalid-feedback" id="errNombreDueno"></div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-6">
+                  <label for="ddlTipo" class="form-label">Tipo</label>
+                  <select id="ddlTipo" class="form-select">
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label for="txtEdad" class="form-label">Edad (años) <span class="text-danger">*</span></label>
+                  <input type="number" id="txtEdad" class="form-control" min="0" max="30" step="1" placeholder="0 - 30">
+                  <div class="invalid-feedback" id="errEdad"></div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="txtTelefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                <input type="text" id="txtTelefono" class="form-control" maxlength="9" inputmode="numeric" placeholder="9 dígitos, ej: 987654321" autocomplete="off">
+                <div class="invalid-feedback" id="errTelefono"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="txtObservaciones" class="form-label">Observaciones <span class="text-muted">(opcional)</span></label>
+                <textarea id="txtObservaciones" class="form-control" rows="3" maxlength="300" placeholder="Vacunas, alergias, notas..."></textarea>
+                <div class="form-text text-end"><span id="contador">0</span>/300</div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary pc-btn">
+                  <i class="bi bi-check2-circle me-1"></i>Registrar mascota
+                </button>
+                <button type="button" id="btnLimpiar" class="btn btn-outline-secondary">Limpiar formulario</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== LISTADO (GridView) ===== -->
+      <div class="col-12 col-lg-8">
+        <div class="card pc-card">
+          <div class="card-header pc-card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <span><i class="bi bi-list-ul me-2"></i>Mascotas registradas
+              <span id="totalBadge" class="badge rounded-pill bg-light text-dark ms-1">0</span>
+            </span>
+            <div class="input-group input-group-sm pc-search">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="search" id="txtBuscar" class="form-control" placeholder="Buscar mascota, dueño...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table id="gvMascotas" class="table table-striped table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Mascota</th>
+                  <th>Dueño</th>
+                  <th>Tipo</th>
+                  <th>Edad</th>
+                  <th>Teléfono</th>
+                  <th>Observaciones</th>
+                  <th class="text-end">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyMascotas"></tbody>
+            </table>
+          </div>
+
+          <div id="vacio" class="text-center text-muted py-5 d-none">
+            <i class="bi bi-emoji-neutral fs-1 d-block mb-2"></i>
+            <span id="vacioTexto">No hay mascotas registradas.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-center text-muted small py-4">
+    PawCare &copy; <span id="anio"></span> · Los datos se guardan en este navegador.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

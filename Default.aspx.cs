@@ -19,7 +19,6 @@ namespace PawCare
             }
         }
 
-        // Requisito 5: el GridView se alimenta ejecutando spListarMascotas
         private void CargarMascotas()
         {
             try
@@ -39,7 +38,6 @@ namespace PawCare
                     }
                 }
 
-                // Encabezado como <thead> (mejor estilo con Bootstrap)
                 if (gvMascotas.HeaderRow != null)
                 {
                     gvMascotas.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -51,7 +49,6 @@ namespace PawCare
             }
         }
 
-        // Requisito 5: spInsertarMascota con CommandType.StoredProcedure y SqlParameter
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             Page.Validate();

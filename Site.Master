@@ -1,0 +1,47 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="PawCare.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PawCare – Registro de mascotas</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="Content/Site.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <nav class="navbar navbar-dark pc-navbar">
+            <div class="container">
+                <span class="navbar-brand d-flex align-items-center gap-2 mb-0">
+                    <i class="bi bi-heart-fill pc-brand-icon"></i>
+                    <span class="fw-bold">PawCare</span>
+                </span>
+                <span class="text-white-50 small d-none d-sm-inline">Clínica veterinaria · Registro de mascotas</span>
+            </div>
+        </nav>
+
+        <header class="pc-hero">
+            <div class="container">
+                <h1 class="h3 mb-1">Registro de mascotas</h1>
+                <p class="mb-0 opacity-75">Registra nuevas mascotas y consulta las que ya están en el sistema.</p>
+            </div>
+        </header>
+
+        <main class="container pc-main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </main>
+
+        <footer class="text-center text-muted small py-4">
+            PawCare &copy; <%: DateTime.Now.Year %>
+        </footer>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

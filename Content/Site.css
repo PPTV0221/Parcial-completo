@@ -1,0 +1,84 @@
+/* ============ PawCare – estilos ============ */
+:root {
+  --pc-primary: #0f8b8d;
+  --pc-primary-dark: #0a6b6d;
+  --pc-accent: #ff8a5b;
+  --pc-bg: #f2f7f7;
+  --pc-text: #26343a;
+  --pc-radius: 14px;
+}
+
+body {
+  background: var(--pc-bg);
+  color: var(--pc-text);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+form#form1 { flex: 1; display: flex; flex-direction: column; }
+
+/* Navbar y cabecera */
+.pc-navbar { background: var(--pc-primary-dark); box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.pc-brand-icon { color: var(--pc-accent); font-size: 1.4rem; }
+.pc-hero {
+  background: linear-gradient(135deg, var(--pc-primary) 0%, var(--pc-primary-dark) 100%);
+  color: #fff;
+  padding: 2rem 0 4rem;
+}
+.pc-main { margin-top: -2.5rem; flex: 1; }
+
+/* Tarjetas */
+.pc-card {
+  border: 0;
+  border-radius: var(--pc-radius);
+  box-shadow: 0 6px 20px rgba(15, 80, 85, .10);
+  overflow: hidden;
+}
+.pc-card-header {
+  background: #fff;
+  border-bottom: 3px solid var(--pc-primary);
+  font-weight: 600;
+  color: var(--pc-primary-dark);
+  padding: .9rem 1.25rem;
+}
+.pc-card .card-body { padding: 1.25rem; }
+
+/* Formulario */
+.form-label { font-weight: 500; font-size: .9rem; margin-bottom: .25rem; }
+.form-control, .form-select { border-radius: 10px; padding: .55rem .8rem; }
+.form-control:focus, .form-select:focus {
+  border-color: var(--pc-primary);
+  box-shadow: 0 0 0 .2rem rgba(15, 139, 141, .2);
+}
+.pc-error { display: block; font-size: .82rem; margin-top: .25rem; }
+
+/* Botones */
+.pc-btn {
+  background: var(--pc-primary);
+  border-color: var(--pc-primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: .6rem;
+  font-weight: 600;
+}
+.pc-btn:hover, .pc-btn:focus { background: var(--pc-primary-dark); border-color: var(--pc-primary-dark); color: #fff; }
+
+/* GridView */
+.pc-grid { margin-bottom: 0; }
+.pc-grid th {
+  background: #e6f2f2;
+  color: var(--pc-primary-dark);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  border-bottom: 0;
+}
+.pc-grid td { font-size: .92rem; vertical-align: middle; }
+.pc-grid .pc-empty { text-align: center; color: #6c7a80; padding: 2.5rem 1rem; }
+
+/* Móvil */
+@media (max-width: 575.98px) {
+  .pc-hero { padding: 1.5rem 0 3.5rem; }
+}
